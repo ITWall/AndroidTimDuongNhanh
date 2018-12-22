@@ -5,21 +5,16 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.hungnv.directionmap.R;
-import com.example.hungnv.directionmap.model.direction.Direction;
+import com.example.hungnv.directionmap.model.Path;
 import com.example.hungnv.directionmap.model.geocoding.Geocoding;
-import com.example.hungnv.directionmap.model.graphhopper.ResultPath;
-import com.google.android.gms.maps.model.LatLng;
 
 import org.mapsforge.core.model.LatLong;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -131,47 +126,56 @@ public class MapController {
         });
     }
 
-    public void getDirection(String sourceLocation, String desLocation){
-        fetchDirection(sourceLocation, desLocation);
-
-    }
-
-    public void fetchDirection(String source, String des){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(context.getString(R.string.api_custom))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        CustomMapService customMapService = retrofit.create(CustomMapService.class);
-        customMapService.getDirection(source, des).enqueue(new Callback<ResultPath>() {
-            @Override
-            public void onResponse(Call<ResultPath> call, Response<ResultPath> response) {
-                mMapListener.onDirectListener(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<ResultPath> call, Throwable t) {
-                Toast.makeText(context, "error when get direction", Toast.LENGTH_SHORT).show();
-                Log.d("Get direction error", t.getMessage());
-            }
-        });
-    }
+//    public void getDirection(String sourceLocation, String desLocation){
+//        fetchDirection(sourceLocation, desLocation);
+//
+//    }
+//
+//    public void fetchDirection(String source, String des){
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(context.getString(R.string.api_custom))
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        CustomMapService customMapService = retrofit.create(CustomMapService.class);
+//        customMapService.getDirection(source, des).enqueue(new Callback<ResultPath>() {
+//            @Override
+//            public void onResponse(Call<ResultPath> call, Response<ResultPath> response) {
+//                mMapListener.onDirectListener(response.body());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResultPath> call, Throwable t) {
+//                Toast.makeText(context, "error when get direction", Toast.LENGTH_SHORT).show();
+//                Log.d("Get direction error", t.getMessage());
+//            }
+//        });
+//    }
 
     public void getDirectionFromPoint(String startPoint, String endPoint){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(context.getString(R.string.api_custom))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+        Path path = new Path();
+        path.setDistance(0);
+        path.setMovingTime(0);
+        path.setPolyline("");
+        String[] start = startPoint.split(",");
+        String[] end = endPoint.split(",");
+        path.setStartLat(Double.parseDouble(start[0]));
+        path.setStartLon(Double.parseDouble(start[1]));
+        path.setEndLat(Double.parseDouble(end[0]));
+        path.setEndLon(Double.parseDouble(end[1]));
         CustomMapService customMapService = retrofit.create(CustomMapService.class);
-        customMapService.getDirectionFromPoint(startPoint, endPoint).enqueue(new Callback<ResultPath>() {
+        customMapService.getDirection(path).enqueue(new Callback<List<Path>>() {
             @Override
-            public void onResponse(Call<ResultPath> call, Response<ResultPath> response) {
+            public void onResponse(Call<List<Path>> call, Response<List<Path>> response) {
                 mMapListener.onDirectListener(response.body());
             }
 
             @Override
-            public void onFailure(Call<ResultPath> call, Throwable t) {
+            public void onFailure(Call<List<Path>> call, Throwable t) {
                 Toast.makeText(context, "error when get direction", Toast.LENGTH_SHORT).show();
                 Log.d("Get direction error", t.getMessage());
             }

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.hungnv.directionmap.R;
 import com.example.hungnv.directionmap.controller.PersonService;
-import com.example.hungnv.directionmap.model.ResponseRegister;
+import com.example.hungnv.directionmap.model.ResponseMessage;
 import com.example.hungnv.directionmap.model.person.Account;
 import com.example.hungnv.directionmap.model.person.Fullname;
 import com.example.hungnv.directionmap.model.person.Person;
@@ -88,14 +88,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
                             addConverterFactory(GsonConverterFactory.create()).
                             build();
                     PersonService service = retrofit.create(PersonService.class);
-                    service.register(person).enqueue(new Callback<ResponseRegister>() {
+                    service.register(person).enqueue(new Callback<ResponseMessage>() {
                         @Override
-                        public void onResponse(Call<ResponseRegister> call, Response<ResponseRegister> response) {
+                        public void onResponse(Call<ResponseMessage> call, Response<ResponseMessage> response) {
                             Toast.makeText(getContext(), ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
-                        public void onFailure(Call<ResponseRegister> call, Throwable t) {
+                        public void onFailure(Call<ResponseMessage> call, Throwable t) {
                             t.printStackTrace();
                             Toast.makeText(getContext(), ""+t.getMessage(), Toast.LENGTH_SHORT).show();
                         }

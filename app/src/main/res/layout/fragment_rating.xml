@@ -24,7 +24,8 @@
             android:layout_weight="10"
             android:text="@string/rating"
             android:textColor="@android:color/white"
-            android:textSize="22sp"/>
+            android:textSize="22sp"
+            android:textAllCaps="true"/>
 
         <TextView
             android:layout_width="match_parent"

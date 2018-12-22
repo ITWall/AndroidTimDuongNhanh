@@ -25,7 +25,7 @@
             android:id="@+id/FabLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="@string/Login"
+            app:fab_label="@string/rating"
             android:src="@drawable/ic_person"
             app:fab_colorNormal="@color/colorPrimaryDark"
             app:fab_colorPressed="@color/colorPrimaryDark"
@@ -41,6 +41,20 @@
             app:fab_colorPressed="@color/colorPrimaryDark"
             app:fab_colorRipple="@android:color/transparent" />
     </com.github.clans.fab.FloatingActionMenu>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/FabChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_label="@string/rating"
+        android:src="@drawable/ic_swap_vert"
+        app:fab_colorNormal="@color/colorPrimaryDark"
+        app:fab_colorPressed="@color/colorPrimaryDark"
+        app:fab_colorRipple="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"/>
 
     <FrameLayout
         android:id="@+id/Container"

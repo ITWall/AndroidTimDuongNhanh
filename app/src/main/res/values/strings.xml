@@ -4,8 +4,9 @@
     <string name="api_fetch_address">https://maps.googleapis.com/maps/api/geocode/json?address=%s&amp;key=%s</string>
     <string name="api_fetch_direction">https://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&amp;destination=%f,%f&amp;key=%s&amp;alternatives=true</string>
     <string name="api_map">https://maps.googleapis.com/maps/api/</string>
-    <string name="api_custom">http://192.168.1.19:8989/api/search/</string>
+    <string name="api_custom">http://192.168.1.19:8989/api/path/</string>
     <string name="api_register">http://192.168.1.19:8989/api/person/</string>
+    <string name="api_rating">http://192.168.1.19:8989/api/map/rating/</string>
     <string name="direction">Direction</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -14,8 +15,12 @@
     <string name="to">To</string>
     <string name="tap_to_close">Tap to close</string>
     <string name="Login">Login</string>
-    <string name="rating">RATING</string>
+    <string name="rating">Rating</string>
     <string name="place">Place</string>
     <string name="level">Level</string>
     <string name="submit">Submit</string>
+    <string name="dialog_choose_level_header">Level</string>
+    <string name="dialog_choose_level_ok">OK</string>
+    <string name="dialog_choose_level_cancel">Cancel</string>
+    <string name="dialog_choose_direction_header">Choose direction</string>
 </resources>
